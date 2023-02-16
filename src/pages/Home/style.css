@@ -24,6 +24,12 @@ body{
     background-color: var(--bg-card);
 }
 
+.childrenContainer{
+    margin-right: 200px;
+    display: flex;
+    position: relative;
+}
+
 .card{
     display: flex;
     flex-direction: column;
@@ -190,10 +196,14 @@ li{
 }
 
 .containerSide{
+    position: absolute;
+    left: 600px;
+    bottom: 200px;
     display: flex;
     flex-direction: column;
     margin-top: 40vh;
     gap: 15px    
+    
 }
 
 .containerSide span{

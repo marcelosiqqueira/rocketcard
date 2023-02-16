@@ -12,10 +12,14 @@
     padding: 0;
 }
 
+body{
+    background-color: var(--bg-card)
+}
+
 .container{
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     background-color: var(--bg-card);
 }
@@ -45,7 +49,7 @@
     color: #FFFFFF;
 }
 
-.backgroundBlack{
+#backgroundBlack{
     width: 438px;
     height: 693px;
     left: 366px;
@@ -183,9 +187,54 @@ li{
     height: 34.32px;
     left: 599px;
     top: 712.26px;
-
 }
 
+.containerSide{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40vh;
+    gap: 15px    
+}
+
+.containerSide span{
+    font-family: 'Prompt';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+.containerSide input{
+    font-family: 'Prompt';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.containerSide button{
+    width: 229px;
+    height: 59.47px;
+    cursor: pointer;
+    
+    background: #000000;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+
+    font-family: 'Prompt';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 23px;
+    transition: 0.5s;
+
+    color: #FFFFFF;
+}
+
+.containerSide button:active{
+    background-color: var(--img-profile); 
+}
 
 
 

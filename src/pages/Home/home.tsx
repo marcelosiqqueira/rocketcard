@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-// import './App.css'
 import './style.css'
+import randomcolor from "randomcolor";
 
 type User = {
     login: string,
@@ -14,25 +14,48 @@ type User = {
 
 function Home() {
     const[user, setUser] = useState({} as User)
-
-    useEffect(() => getUser,[]) 
+    const [backgroundColor, setBackgroundColor] = useState("#000000");
+    var i = 0;
+    useEffect(() => {
+        getUser()
+      } , []) 
     
     async function getUser():Promise<void>{
-        const response = await fetch('https://api.github.com/users/marcelosiqqueira');
-        const data = await response.json();
-        const user:User = {
-            login: data.login,
-            avatar_url: data.avatar_url,
-            followers: data.followers,
-            following: data.following,
-            public_repos: data.public_repos,
-            company: data.company,
-            location: data.location
-            
+        const username = document.getElementById('inputName') as HTMLInputElement;
+        if (username?.value==="")
+        {   
+            const response = await fetch('https://api.github.com/users/MaykBrito');
+            const data = await response.json();
+            const user:User = {
+                login: data.login,
+                avatar_url: data.avatar_url,
+                followers: data.followers,
+                following: data.following,
+                public_repos: data.public_repos,
+                company: data.company,
+                location: data.location            
+            }
+            setUser(user);
+        }else{
+            const response = await fetch(`https://api.github.com/users/${username?.value}`);
+            const data = await response.json();
+            const user:User = {
+                login: data.login,
+                avatar_url: data.avatar_url,
+                followers: data.followers,
+                following: data.following,
+                public_repos: data.public_repos,
+                company: data.company,
+                location: data.location            
+            }
+            setUser(user);
         }
-        setUser(user);
     }
-    
+
+    const changeBackgroundColor = () => {
+        setBackgroundColor(randomcolor());
+    }
+
     return (
         <div className='container'>
             <div className='card'>
@@ -40,8 +63,8 @@ function Home() {
                     Compartilhe seu #rocketcard
                 </span>
                 
-                <div className='backgroundBlack'>
-                    <div className='backgroundChildren'>
+                <div style={{ backgroundColor: backgroundColor }} id='backgroundBlack'>
+                    <div  className='backgroundChildren'>
                         <div className='iconWithText'>
                             <div className='whiteCicle'>
                                 <img className='imgRocketSeat' src="../src/assets/logo.svg" alt="img-rocketseat"/>
@@ -65,15 +88,30 @@ function Home() {
                 </div>
             </div>
             
-            
+            <div className='containerSide'>
+                <span>Customizar Rocketcard</span>
+                <Button change={changeBackgroundColor} />
 
-            <div className='textWithButton'>
-
+                <span>Descubra seu RocketCard</span>
+                <input type="text" id='inputName' placeholder='GitHub Username' />
+                <button onClick={getUser} className='buttonDiscover'>Descobrir</button>
             </div>
 
         </div>
     )
+
+    
 }
+
+
+
+function Button(props:any)
+{
+    return(
+        <button onClick={props.change} id='buttonChangeBackground'>Mudar cor de fundo</button>
+    )
+}
+
 
 function Info(props:any){
     return(

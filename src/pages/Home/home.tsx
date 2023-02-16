@@ -58,51 +58,54 @@ function Home() {
 
     return (
         <div className='container'>
-            <div className='card'>
-                <span className='headerTitle'>
-                    Compartilhe seu #rocketcard
-                </span>
-                
-                <div style={{ backgroundColor: backgroundColor }} id='backgroundBlack'>
-                    <div  className='backgroundChildren'>
-                        <div className='iconWithText'>
-                            <div className='whiteCicle'>
-                                <img className='imgRocketSeat' src="../src/assets/logo.svg" alt="img-rocketseat"/>
+            <div className='childrenContainer'>
+                <div className='card'>
+                    <span className='headerTitle'>
+                        Compartilhe seu #rocketcard
+                    </span>
+                    
+                    <div style={{ backgroundColor: backgroundColor }} id='backgroundBlack'>
+                        <div  className='backgroundChildren'>
+                            <div className='iconWithText'>
+                                <div className='whiteCicle'>
+                                    <img className='imgRocketSeat' src="../src/assets/logo.svg" alt="img-rocketseat"/>
+                                </div>
+                                <span className='textUser'>{user.login}</span>
                             </div>
-                            <span className='textUser'>{user.login}</span>
+
+                            <div>
+                                <img className='avatarMain' src={user.avatar_url} alt=""/>
+                            </div>  
+                            
+                            <Info user={user}> </Info>
+
+                            <div className='divFooter'>
+                                <img src="../src/assets/logo.svg" alt="icon-rocketseat" />
+                                <span >ROCKETCARD </span>
+                            </div> 
+                            
                         </div>
 
-                        <div>
-                            <img className='avatarMain' src={user.avatar_url} alt=""/>
-                        </div>  
-                        
-                        <Info user={user}> </Info>
-
-                        <div className='divFooter'>
-                            <img src="../src/assets/logo.svg" alt="icon-rocketseat" />
-                            <span >ROCKETCARD </span>
-                        </div> 
-                        
                     </div>
-
                 </div>
+                
+                <div className='containerSide'>
+                    <span>Customizar Rocketcard</span>
+                    <Button change={changeBackgroundColor} />
+
+                    <span>Descubra seu RocketCard</span>
+                    <input type="text" id='inputName' placeholder='GitHub Username' />
+                    <button onClick={getUser} className='buttonDiscover'>Descobrir</button>
+                </div>
+
             </div>
             
-            <div className='containerSide'>
-                <span>Customizar Rocketcard</span>
-                <Button change={changeBackgroundColor} />
-
-                <span>Descubra seu RocketCard</span>
-                <input type="text" id='inputName' placeholder='GitHub Username' />
-                <button onClick={getUser} className='buttonDiscover'>Descobrir</button>
-            </div>
 
         </div>
     )
 
     
 }
-
 
 
 function Button(props:any)
